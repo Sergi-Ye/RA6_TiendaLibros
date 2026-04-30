@@ -90,7 +90,9 @@ public class Libro {
 
     @Override
     public String toString() {
-        return isbn + ";" + titulo + ";" + autores.toString() + ";" + precio + ";" + cantidadEnInventario + "\n";
+        
+        String listaAutores = String.join("&", autores);
+        return isbn + ";" + titulo + ";" + listaAutores + ";" + precio + ";" + cantidadEnInventario + "\n";
     }
     
     

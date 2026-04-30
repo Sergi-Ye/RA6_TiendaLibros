@@ -16,7 +16,7 @@ import persistencia.Fichero;
  */
 public class Controlador {
     
-    private static HashMap<String, Libro> inventarioLibros = new HashMap<>();
+    private static HashMap<String, Libro> inventarioLibros;
     private static Fichero fichero = new Fichero();
 
     public Controlador() {

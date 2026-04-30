@@ -200,7 +200,8 @@ public class VentanaAnadir extends javax.swing.JFrame {
             return;
         } 
         try{
-            Libro libro = new Libro(isbn.getText(), titulo.getText(), autores, Double.parseDouble(precio.getText()), (int)cantidad.getValue());
+            ArrayList<String> autoresTemporal = autores;
+            Libro libro = new Libro(isbn.getText(), titulo.getText(), autoresTemporal, Double.parseDouble(precio.getText()), (int)cantidad.getValue());
             controlador.agregar(libro);
             JOptionPane.showMessageDialog(this, "Se ha anadido el libro con exito");
         }catch(LibroException e){

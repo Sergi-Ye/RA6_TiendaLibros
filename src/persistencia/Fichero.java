@@ -35,7 +35,7 @@ public class Fichero {
     
     public void guardar(HashMap<String, Libro> libros){
         try{
-            FileWriter fw = new FileWriter(RUTA_ARCHIVO);
+            FileWriter fw = new FileWriter(RUTA_ARCHIVO, false);
             BufferedWriter bw = new BufferedWriter(fw);
             
             Iterator it = libros.keySet().iterator();
@@ -51,23 +51,24 @@ public class Fichero {
     
     public HashMap<String, Libro> cargar(){
         HashMap<String, Libro> libros = new HashMap<>();
-        ArrayList<String> autores = new ArrayList<>();
+        
         try{
-            autores.clear();
             FileReader fr = new FileReader(RUTA_ARCHIVO);
             BufferedReader br = new BufferedReader(fr);
             String linea;
             
             while((linea = br.readLine()) != null){
+                ArrayList<String> autores = new ArrayList<>();
+                
                 String[] datos = linea.split(";");
-                String texto = datos[2].replace("[", "").replace("]", "");
-                String[] datosAutor = texto.split(", ");
-                for(String autor: datosAutor){
-                    autores.add(autor);
+                String[] datosAutor = datos[2].split("&");
+                for (String autor : datosAutor) {
+                    if (!autor.isEmpty()) autores.add(autor);
                 }
                 Libro libro = new Libro(datos[0], datos[1], autores, Double.parseDouble(datos[3]), Integer.parseInt(datos[4]));
                 libros.put(datos[0], libro);
             }
+            br.close();
         }catch(Exception e){
             System.err.println(e);
         }

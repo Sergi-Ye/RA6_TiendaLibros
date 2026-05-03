@@ -31,7 +31,7 @@ public class Controlador {
         Iterator it = inventarioLibros.keySet().iterator();
         while(it.hasNext()){
             String key = (String) it.next();
-            if(libro.getIsbn().equals(inventarioLibros.get(key).getIsbn())){
+            if(libro.getTitulo().equals(inventarioLibros.get(key).getTitulo()) && (libro.hashCode() == inventarioLibros.get(key).hashCode())){
                 throw new LibroException("Ya existe este libro");
             }
         }
@@ -58,6 +58,7 @@ public class Controlador {
             String key = (String) it.next();
             if(inventarioLibros.get(key).getTitulo().equals(titulo)){
                 inventarioLibros.remove(key);
+                break;
             }
         }
     }
